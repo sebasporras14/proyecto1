@@ -30,14 +30,14 @@ def division(a, b):
     a1, b1 = a[0], a[1]
     b = list(b)
     a2, b2 = b[0], b[1]
-    division1 = (a2*a1 + b1*b2) / (a2**2 + b2**2)
-    division2 = (b1*a2 - a1*b2) / (a2**2 + b2**2)
+    division1 = round((a2*a1 + b1*b2) / (a2**2 + b2**2),2)
+    division2 = round((b1*a2 - a1*b2) / (a2**2 + b2**2), 2)
     return complex(division1, division2)
 def modulo(a):
     a = list(a)
     a1, b1 = a[0], a[1]
     modulo = (a1**2 + b1**2)**0.5
-    return modulo
+    return round(modulo, 2)
 def conjugado(a):
     a = list(a)
     a1, b1 = a[0], a[1]
@@ -47,15 +47,14 @@ def conversioncap(a):
     a = list(a)
     a1, b1 = a[0], a[1]
     r = (a1**2 + b1**2)**0.5
-    angulo =(math.atan(b1 / a1))
-    polar = round(r,2) *(complex(round(math.cos(angulo),2),round(math.sin(angulo),2)))
-    return polar
+    angulo =math.atan(b1 / a1)
+    return (round(r,2), round(angulo,2))
 def conversionpac(a):
     a = list(a)
     r, angulo = a[0], a[1]
     a = round(r* math.cos(angulo),2)
     b = round(r* math.sin(angulo),2)
-    return complex(a, b)
+    return(a, b)
 def fase(a):
     a = list(a)
     a, b = a[0], a[1]
