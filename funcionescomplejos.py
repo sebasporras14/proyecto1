@@ -8,7 +8,7 @@ def suma(a, b):
     a2, b2 = b[0], b[1]
     suma1 =  a1 + a2
     suma2 = b1 + b2
-    return complex(suma1, suma2)
+    return complex(round(suma1,2), round(suma2,2))
 def producto(a, b):
     a = list(a)
     a1, b1 = a[0], a[1]
@@ -16,7 +16,7 @@ def producto(a, b):
     a2, b2 = b[0], b[1]
     producto1 = a2*a1 - b1*b2
     producto2 = b1*a2 + a1*b2
-    return complex(producto1, producto2)
+    return complex(round(producto1,2), round(producto2,2))
 def resta(a, b):
     a = list(a)
     a1, b1 = a[0], a[1]
@@ -24,7 +24,7 @@ def resta(a, b):
     a2, b2 = b[0], b[1]
     resta1 =  a1 - a2
     resta2 = b1 - b2
-    return complex(resta1, resta2)
+    return complex(round(resta1,2), round(resta2,2))
 def division(a, b):
     a = list(a)
     a1, b1 = a[0], a[1]
@@ -32,7 +32,7 @@ def division(a, b):
     a2, b2 = b[0], b[1]
     division1 = round((a2*a1 + b1*b2) / (a2**2 + b2**2),2)
     division2 = round((b1*a2 - a1*b2) / (a2**2 + b2**2), 2)
-    return complex(division1, division2)
+    return complex(round(division1,2), round(division2,2))
 def modulo(a):
     a = list(a)
     a1, b1 = a[0], a[1]
