@@ -17,6 +17,11 @@ def adimatcom(a,b):
         for k in range(len(a)):
             a[i][k] = a[i][k] + b[i][k]
     return a
+def inveradimat(a):
+    for i in range(len(a)):
+        for k in range(len(a[0])):
+            a[i][k] = complex(a[i][k].real * -1,a[i][k].imag * -1)
+    return a
 def multescmat(a,b):
     for i in range(len(a)):
         for k in range(len(a[0])):
@@ -36,9 +41,13 @@ def conjugadamatriz(a):
         for k in range(len(a[0])):
             a[i][k] = complex(a[i][k].real,a[i][k].imag * -1)
     return a
+def conjugadavector(a):    
+    for i in range(len(a)):
+        a[i] = complex(a[i].real,a[i].imag * -1)
+    return a
 def adjunta(a):
-    b = transpuesta(conjugadamatriz(a))
-    return b
+    a = conjugadamatriz(transpuesta(a))
+    return a
 def produmatr(a,b):
     m = len(a[0])
     n = len(b)
@@ -53,12 +62,13 @@ def produmatr(a,b):
     for i in range(m):
         for j in range(n):
             c[i][j] = productvec(a[i],b[j])
+            c[i][j] = complex(round(c[i][j].real,0), round(c[i][j].imag, 0))
     return transpuesta(c)
 ## funcion de ayuda "producto de vectores 0*n * m*0"
 def productvec(a,b):
     suma = 0
     for i in range(len(a)):
-        c1 = a[i] * b[i]
+        c1 = (a[i] * b[i])
         suma = suma + c1
     return suma
 ##
@@ -73,7 +83,46 @@ def accionvecmat(a, b):
         for i in range(len(c)):
             c[i] = productvec(a[i],b)
     return c
-       
+def normavec(a):
+    # ingresar vectores de la forma [a, b, c]
+    c = 0
+    for i in range(len(a)):
+        c = c + a[i]**2
+    c = c ** 0.5
+    return round(c, 2)
+def distanvec(a, b):
+    # ingresar vectores de la forma [a, b, c]
+    for i in range(len(a)):
+        a[i] = a[i] - b[i]
+    c = productvec(a, a)
+    c = c ** 0.5
+    return round(c, 2)
+def matruni(a):
+    c = adjunta(a)
+    d = produmatr(a, c)
+    bandera = True
+    for i in range(len(d)):
+        for j in range(len(d[0])):
+            if d[i][i] != 1:
+                bandera = False
+            if d[i][j] != 0 and i != j:
+                bandera = False
+    return bandera
+    
+def matrherm(a):
+    if a == adjunta(a):
+        return True
+    else:
+        return False
+
+def productensor(a, b):
+    c = []
+    for i in range(len(a)):
+        for j in range(len(b)):
+            c1 = a[i] * b [j]
+            c = c + [c1]
+    return c
+            
             
             
         
