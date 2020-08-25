@@ -1,5 +1,6 @@
 import unittest
 from funcionescomplejos import*
+from operacionesmatrices import*
 
 class TestStringMethods(unittest.TestCase):
 
@@ -263,6 +264,121 @@ class TestStringMethods(unittest.TestCase):
 
         a = (6, -4)
         self.assertEqual(fase(a),-33.69)
+
+    def testadiveccom(self):
+        a = [2+3j, 1+0j, 3-7j]
+        b = [0+4j, 8+1j, 7-7j]
+        self.assertEqual(adiveccom(a,b), [2+7j, 9+1j, 10-14j])
+
+        a = [1+2j, 6+0j, 1+4j]
+        b = [4+5j, 4+9j, 1-3j]
+        self.assertEqual(adiveccom(a,b), [5+7j, 10+9j, 2+1j])
+        
+    def testinvadi(self):
+        
+        a = [1+2j, 6+0j, 1+4j]
+        self.assertEqual(invadi(a), [-1-2j, -6-0j, -1-4j])
+
+        a = [4+5j, 4+9j, 1-3j]
+        self.assertEqual(invadi(a), [-4-5j, -4-9j, -1+3j])
+
+    def testmultesc(self):
+        a = [2+3j, 1+0j]
+        b = 7-7j
+        self.assertEqual(multesc(a,b), [35+7j, 7-7j])
+
+        a = [1+2j, 6+0j]
+        b = 4+9j
+        self.assertEqual(multesc(a,b), [-14+17j, 24+54j])
+        
+    def testadimatcom(self):
+        a = [[1+0j, 2-1j],[7+2j, 8-9j]]
+        b = [[1+1j, 2+2j],[3+3j, 4+4j]]
+        self.assertEqual(adimatcom(a,b), [[2+1j, 4+1j],[10+5j, 12-5j]])
+
+        a = [[1+2j, 6+0j, 1+4j],[4+5j, 4+9j, 1-3j], [1+2j, 6+0j, 1+4j]]
+        b = [[4+5j, 4+9j, -2-2j], [0+9j, 6+7j, 5+4j], [3+2j, 1+0j, 2+4j]]
+        self.assertEqual(adimatcom(a,b), [[5+7j, 10+9j, -1+2j],[4+14j, 10+16j, 6+1j],[4+4j, 7+0j, 3+8j]])
+
+    def testinveradimat(self):
+        a = [[1+0j, 2-1j],[7+2j, 8-9j]]
+        self.assertEqual(inveradimat(a), [[-1-0j, -2+1j],[-7-2j, -8+9j]])
+
+        a = [[4+5j, 4+9j, -2-2j], [0+9j, 6+7j, 5+4j], [3+2j, 1+0j, 2+4j]]
+        self.assertEqual(inveradimat(a), [[-4-5j, -4-9j, +2+2j], [-0-9j, -6-7j, -5-4j], [-3-2j, -1-0j, -2-4j]])
+        
+    def testmultescmat(self):
+        a = [[1+0j, 2-1j],[7+2j, 8-9j]]
+        b = 7-7j
+        self.assertEqual(multescmat(a,b), [[7-7j, 7-21j],[63-35j, -7-119j]])
+
+        a = [[2+3j, 1-5j],[7+6j, 2-7j]]
+        b = 4+9j
+        self.assertEqual(multescmat(a,b), [[-19+30j, 49-11j],[-26+87j, 71-10j]])
+
+    def testtranspuesta(self):
+        
+        a = [[1+0j, 2-1j],[7+2j, 8-9j]]
+        self.assertEqual(transpuesta(a), [[1+0j, 7+2j],[2-1j, 8-9j]])
+
+        a = [[2+3j, 1-5j],[7+6j, 2-7j]]
+        self.assertEqual(transpuesta(a), [[2+3j, 7+6j],[1-5j, 2-7j]])
+        
+    def testconjugadamatriz(self):
+        
+        a = [[1+0j, 2-1j],[7+2j, 8-9j]]
+        self.assertEqual(conjugadamatriz(a), [[1-0j, 2+1j],[7-2j, 8+9j]])
+
+        a = [[2+3j, 1-5j],[7+6j, 2-7j]]
+        self.assertEqual(conjugadamatriz(a), [[2-3j, 1+5j],[7-6j, 2+7j]])
+
+    def testconjugadavector(self):
+        
+        a = [1+2j, 6+0j, 1+4j]
+        self.assertEqual(conjugadavector(a), [1-2j, 6-0j, 1-4j])
+
+        a = [4+5j, 4+9j, 1-3j]
+        self.assertEqual(conjugadavector(a), [4-5j, 4-9j, 1+3j])
+
+    def testadjunta(self):
+        
+        a = [[1+0j, 2-1j],[7+2j, 8-9j]]
+        self.assertEqual(adjunta(a), [[1-0j, 7-2j],[2+1j, 8+9j]])
+
+        a = [[2+3j, 1-5j],[7+6j, 2-7j]]
+        self.assertEqual(adjunta(a), [[2-3j, 7-6j],[1+5j, 2+7j]])
+#
+    def testprodumatr(self):
+        
+        a = [[2+3j, 7+6j],[1-5j, 2-7j]]
+        b = [[1-0j, 7-2j],[2+1j, 8+9j]]
+        self.assertEqual(produmatr(a,b), [[-1-34j, 7-47j],[54-23j, 87-19j]])
+
+        a = [[4+5j, 4+9j, 1-3j], [1-0j, 7-2j, 2+1j]]
+        b = [[2+3j, 5-4j],[1+7j, -2-5j],[2+3j, -2-2j]]
+        self.assertEqual(produmatr(a,b), [[-2+18j, 8-8j, 25-6j], [-33+28j, -83+6j, 23-8j], [-9+20j, -37+20j, 9-9j]])
+
+    def testmatrherm(self):
+        
+        a = [[7+0j, 6-5j],[6+5j, -3+0j]]
+        self.assertEqual(matrherm(a), True)
+
+        a = [[2+0j, 3-5j],[3+7j, 5+0j]]
+        self.assertEqual(matrherm(a), False)
+
+    def testmatruni(self):
+        
+        a = [[0+1j, 0+0j],[0+0j, 0+1j]]
+        self.assertEqual(matruni(a), True)
+
+        a = [[2+0j, 3-5j],[3+7j, 5+0j]]
+        self.assertEqual(matruni(a), False)
+
+    def testproductotensor(self):
+        a = [2+1j, 1+3j]
+        b = [3+2j, 7+5j, -3+2j]
+        self.assertEqual(productensor(a, b), [4+7j, 9+17j, -8+1j, -3+11j, -8+26j, -9-7j])
+
         
 if __name__ == '__main__':
     unittest.main()

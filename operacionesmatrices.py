@@ -9,6 +9,7 @@ def invadi(a):
         a[i] = a[i] * -1
     return a
 def multesc(a, b):
+    # a es matriz y b es escalar
     for i in range(len(a)):
         a[i] = a[i] * b
     return a
@@ -65,13 +66,22 @@ def produmatr(a,b):
             c[i][j] = complex(round(c[i][j].real,0), round(c[i][j].imag, 0))
     return transpuesta(c)
 ## funcion de ayuda "producto de vectores 0*n * m*0"
+## producto interno de reales
 def productvec(a,b):
     suma = 0
     for i in range(len(a)):
         c1 = (a[i] * b[i])
         suma = suma + c1
     return suma
-##
+##producto interno de complejos
+def productointerno(a,b):
+    a = conjugadavector(a)
+    suma = 0
+    for i in range(len(a)):
+        c1 = (a[i] * b[i])
+        suma = suma + c1
+    return suma
+    
 def accionvecmat(a, b):
     # poner vector en modo matriz de la forma [[a, b, c]]
     m, n = len(a), len(a[0])
@@ -84,18 +94,14 @@ def accionvecmat(a, b):
             c[i] = productvec(a[i],b)
     return c
 def normavec(a):
-    # ingresar vectores de la forma [a, b, c]
-    c = 0
-    for i in range(len(a)):
-        c = c + a[i]**2
-    c = c ** 0.5
-    return round(c, 2)
+    norma = productointerno(a,a)
+    return norma
 def distanvec(a, b):
     # ingresar vectores de la forma [a, b, c]
     for i in range(len(a)):
         a[i] = a[i] - b[i]
-    c = productvec(a, a)
-    c = c ** 0.5
+    c = productointerno(conjugadavector(a), a)
+    f
     return round(c, 2)
 def matruni(a):
     c = adjunta(a)
