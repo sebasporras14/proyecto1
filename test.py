@@ -357,6 +357,12 @@ class TestStringMethods(unittest.TestCase):
         a = [[4+5j, 4+9j, 1-3j], [1-0j, 7-2j, 2+1j]]
         b = [[2+3j, 5-4j],[1+7j, -2-5j],[2+3j, -2-2j]]
         self.assertEqual(produmatr(a,b), [[-2+18j, 8-8j, 25-6j], [-33+28j, -83+6j, 23-8j], [-9+20j, -37+20j, 9-9j]])
+    def testproductointerno(self):
+        
+        a = [7+0j, 6-5j]
+        b = [6+5j, -3+0j]
+        self.assertEqual(productointerno(a,b), 24+20j)
+        
 
     def testmatrherm(self):
         

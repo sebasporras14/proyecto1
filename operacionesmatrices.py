@@ -75,10 +75,11 @@ def productvec(a,b):
     return suma
 ##producto interno de complejos
 def productointerno(a,b):
-    a = conjugadavector(a)
+    x = a
+    d = conjugadavector(x)
     suma = 0
     for i in range(len(a)):
-        c1 = (a[i] * b[i])
+        c1 = (d[i] * b[i])
         suma = suma + c1
     return suma
     
@@ -87,22 +88,13 @@ def accionvecmat(a, b):
     m, n = len(a), len(a[0])
     m1 = len(b)
     c = m * [0]
+    a = transpuesta(a)
     if n != m1:
         return False
     else:
         for i in range(len(c)):
             c[i] = productvec(a[i],b)
     return c
-def normavec(a):
-    norma = productointerno(a,a)
-    return norma
-def distanvec(a, b):
-    # ingresar vectores de la forma [a, b, c]
-    for i in range(len(a)):
-        a[i] = a[i] - b[i]
-    c = productointerno(conjugadavector(a), a)
-    f
-    return round(c, 2)
 def matruni(a):
     c = adjunta(a)
     d = produmatr(a, c)
